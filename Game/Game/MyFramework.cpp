@@ -2,9 +2,21 @@
 #include <stdio.h>
 #include "Brick.h"
 
+#pragma region DeltaTicks
 unsigned int deltaTicks = 0;
 unsigned int lastTicks = 0;
 
+void calculateDeltaTicks()
+{
+	int ticks = getTickCount();
+	deltaTicks = ticks - lastTicks;
+	lastTicks = ticks;
+	/*printf("\n");
+	printf("%d", deltaTicks);*/
+}
+#pragma endregion DeltaTicks
+
+#pragma region Map
 int mWidth;
 int mHeight;
 
@@ -17,8 +29,8 @@ Brick createBrick(int posX, int posY, const char* spritePath, int width = 0, int
 	Sprite* s = createSprite(spritePath);
 	setSpriteSize(s, width, height);
 	Brick b = Brick(posX, posY, s);
-	b.centerPosX = posX + (width / 2);
-	b.centerPosY = posY + (height / 2);
+	b.centerPosX = posX + (width * 0.5f);
+	b.centerPosY = posY + (height * 0.5f);
 	return b;
 }
 
@@ -52,16 +64,9 @@ void drawBrickMap()
 		}
 	}
 }
+#pragma endregion Map
 
-void calculateDeltaTicks()
-{
-	int ticks = getTickCount();
-	deltaTicks = ticks - lastTicks;
-	lastTicks = ticks;
-	/*printf("\n");
-	printf("%d", deltaTicks);*/
-}
-
+#pragma region MyFramework
 MyFramework::MyFramework(char* argv[])
 {
 	printf("test");
@@ -126,3 +131,4 @@ const char* MyFramework::GetTitle()
 {
 	return "Arcanoid";
 }
+#pragma endregion MyFramework
