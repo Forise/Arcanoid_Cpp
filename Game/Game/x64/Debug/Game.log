@@ -1,4 +1,5 @@
 ﻿  MyFramework.cpp
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(32,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(33,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(34,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(90,38): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
   Game.vcxproj -> C:\Projects\Arcanoid\Arcanoid_Cpp\Game\x64\Debug\Game.exe

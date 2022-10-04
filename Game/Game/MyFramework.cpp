@@ -1,6 +1,7 @@
 #include "MyFramework.h"
 #include <stdio.h>
 #include "Brick.h"
+#include "Platform.h"
 
 #pragma region DeltaTicks
 unsigned int deltaTicks = 0;
@@ -36,7 +37,7 @@ Brick createBrick(int posX, int posY, const char* spritePath, int width = 0, int
 
 void fillBrickMap()
 {
-	int brickW = mWidth / 11;
+	int brickW = mWidth / brickMapW;
 	int brickH = brickW / 3;
 
 	int wOffset = 0;
@@ -66,6 +67,42 @@ void drawBrickMap()
 }
 #pragma endregion Map
 
+#pragma region Platform
+Platform platform;
+
+bool movingLeft = false;
+bool movingRight = false;
+
+const char* platformSpritePath0 = "data/50-Breakout-Tiles.png";
+const char* platformSpritePath1 = "data/51-Breakout-Tiles.png";
+const char* platformSpritePath2 = "data/52-Breakout-Tiles.png";
+
+void createPlatform()
+{
+	int pW = mWidth / brickMapW * 2;
+	int pH = pW / 4;
+	Sprite* pS0 = createSprite(platformSpritePath0);
+	Sprite* pS1 = createSprite(platformSpritePath1);
+	Sprite* pS2 = createSprite(platformSpritePath2);
+	setSpriteSize(pS0, pW, pH);
+	setSpriteSize(pS1, pW, pH);
+	setSpriteSize(pS1, pW, pH);
+	platform = Platform((mWidth * 0.5f) - (pW * 0.5f), mHeight - pH, pS0, pS1, pS2, pW, pH);
+}
+
+void tryMovePlatform()
+{
+	if (movingRight && platform.posX + platform.w < mWidth)
+	{
+		platform.MoveHorisontal(deltaTicks);
+	}
+	else if (movingLeft && platform.posX > 0)
+	{
+		platform.MoveHorisontal(deltaTicks * -1);
+	}
+}
+#pragma endregion Platform
+
 #pragma region MyFramework
 MyFramework::MyFramework(char* argv[])
 {
@@ -75,20 +112,16 @@ MyFramework::MyFramework(char* argv[])
 
 void MyFramework::PreInit(int& width, int& height, bool& fullscreen)
 {
-	width = 1080;
-	height = 1080;
+	width = 800;
+	height = 640;
 	mWidth = width;
 	mHeight = height;
 	fullscreen = false;
 }
 
 bool MyFramework::Init() {
-	//s = createSprite("data/01-Breakout-Tiles.png");
-	//int w;
-	//int h;
-	//getSpriteSize(s, w, h);
-	//b = createBrick(0, 0, "data/01-Breakout-Tiles.png");
 	fillBrickMap();
+	createPlatform();
 	return true;
 }
 
@@ -98,14 +131,24 @@ void MyFramework::Close() {
 
 bool MyFramework::Tick() {
 	drawTestBackground();
+	
 	calculateDeltaTicks();
+	
 	drawBrickMap();
-	//drawSprite(b.sprite, 0, 0);
+
+	drawSprite(platform.sprite0, platform.posX, platform.posY);
+	
+	tryMovePlatform();
 	return false;
 }
 
 void MyFramework::onMouseMove(int x, int y, int xrelative, int yrelative) {
 
+	/*printf("\n");
+	printf("mouse pos %d, %d", x, y);
+	printf("\n");
+	printf("relative mouse pos %d, %d", xrelative, yrelative);
+	printf("\n");*/
 }
 
 void MyFramework::onMouseButtonClick(FRMouseButton button, bool isReleased) {
@@ -115,11 +158,26 @@ void MyFramework::onMouseButtonClick(FRMouseButton button, bool isReleased) {
 void MyFramework::onKeyPressed(FRKey k) {
 	if (k == FRKey::RIGHT)
 	{
-
+		movingLeft = false;
+		movingRight = true;
+	}
+	else if (k == FRKey::LEFT)
+	{
+		movingLeft = true;
+		movingRight = false;
+		platform.MoveHorisontal(deltaTicks * -1);
 	}
 }
 
 void MyFramework::onKeyReleased(FRKey k) {
+	if (k == FRKey::RIGHT)
+	{
+		movingRight = false;
+	}
+	else if (k == FRKey::LEFT)
+	{
+		movingLeft = false;
+	}
 }
 
 unsigned int MyFramework::GetDeltaTicks()
