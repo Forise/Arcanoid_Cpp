@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="MyFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="MyFramework.h" />
   </ItemGroup>

@@ -17,12 +17,18 @@
     <ClCompile Include="MyFramework.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="MyFramework.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
