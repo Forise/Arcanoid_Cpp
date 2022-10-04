@@ -73,21 +73,13 @@ Platform platform;
 bool movingLeft = false;
 bool movingRight = false;
 
-const char* platformSpritePath0 = "data/50-Breakout-Tiles.png";
-const char* platformSpritePath1 = "data/51-Breakout-Tiles.png";
-const char* platformSpritePath2 = "data/52-Breakout-Tiles.png";
+
 
 void createPlatform()
 {
 	int pW = mWidth / brickMapW * 2;
 	int pH = pW / 4;
-	Sprite* pS0 = createSprite(platformSpritePath0);
-	Sprite* pS1 = createSprite(platformSpritePath1);
-	Sprite* pS2 = createSprite(platformSpritePath2);
-	setSpriteSize(pS0, pW, pH);
-	setSpriteSize(pS1, pW, pH);
-	setSpriteSize(pS1, pW, pH);
-	platform = Platform((mWidth * 0.5f) - (pW * 0.5f), mHeight - pH, pS0, pS1, pS2, pW, pH);
+	platform = Platform((mWidth * 0.5f) - (pW * 0.5f), mHeight - pH, pW, pH);
 }
 
 void tryMovePlatform()
