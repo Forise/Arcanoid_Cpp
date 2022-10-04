@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="MyFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="MyFramework.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="FrameworkRelease_x64.lib" />
