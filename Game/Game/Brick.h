@@ -12,6 +12,8 @@ public:
 	}
 	int posX = 0;
 	int posY = 0;
+
+	bool destroyed = false;
 	
 	int centerPosX = 0;
 	int centerPosY = 0;

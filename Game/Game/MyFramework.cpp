@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include "Brick.h"
 #include "Platform.h"
+#include "Ball.h"
+
+#pragma region GameState
+enum class GameState
+{
+	Init = 0,
+	Playing = 1,
+	End = 2,
+};
+#pragma endregion GameState
+
+GameState gs = GameState::Init;
 
 #pragma region DeltaTicks
 unsigned int deltaTicks = 0;
@@ -61,7 +73,10 @@ void drawBrickMap()
 	{
 		for (int k = 0; k < brickMapW; k++)
 		{
-			drawSprite(brickMap[i][k].sprite, brickMap[i][k].posX, brickMap[i][k].posY);
+			if (brickMap[i][k].destroyed == false)
+			{
+				drawSprite(brickMap[i][k].sprite, brickMap[i][k].posX, brickMap[i][k].posY);
+			}
 		}
 	}
 }
@@ -72,8 +87,6 @@ Platform platform;
 
 bool movingLeft = false;
 bool movingRight = false;
-
-
 
 void createPlatform()
 {
@@ -95,6 +108,23 @@ void tryMovePlatform()
 }
 #pragma endregion Platform
 
+#pragma region Ball
+Ball ball;
+
+void createBall()
+{
+	int bW = platform.w / 10;
+	int bH = bW;
+	ball = Ball(platform.centerPosX - bW / 2, platform.centerPosY, bW, bH);
+}
+
+void tryMoveBall()
+{
+
+}
+#pragma endregion Ball
+
+
 #pragma region MyFramework
 MyFramework::MyFramework(char* argv[])
 {
@@ -114,6 +144,7 @@ void MyFramework::PreInit(int& width, int& height, bool& fullscreen)
 bool MyFramework::Init() {
 	fillBrickMap();
 	createPlatform();
+	createBall();
 	return true;
 }
 
@@ -122,15 +153,30 @@ void MyFramework::Close() {
 }
 
 bool MyFramework::Tick() {
-	drawTestBackground();
-	
 	calculateDeltaTicks();
-	
-	drawBrickMap();
 
+	drawTestBackground();
+	Sprite* back = createSprite("data/17.png");
+	setSpriteSize(back, mWidth, mHeight);
+	drawSprite(back, 0, 0);
+	drawBrickMap();
 	drawSprite(platform.sprite0, platform.posX, platform.posY);
-	
+	drawSprite(ball.sprite0, ball.posX, ball.posY);
 	tryMovePlatform();
+
+	switch (gs)
+	{
+	case GameState::Init:
+		break;
+	case GameState::Playing:
+		break;
+	case GameState::End:
+		break;
+	default:
+		break;
+	}	
+
+	
 	return false;
 }
 
@@ -144,7 +190,7 @@ void MyFramework::onMouseMove(int x, int y, int xrelative, int yrelative) {
 }
 
 void MyFramework::onMouseButtonClick(FRMouseButton button, bool isReleased) {
-
+	
 }
 
 void MyFramework::onKeyPressed(FRKey k) {
