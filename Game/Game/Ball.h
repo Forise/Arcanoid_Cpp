@@ -16,16 +16,12 @@ public:
 		sprite0 = createSprite(ballSpritePath0);
 		setSpriteSize(sprite0, w, h);
 
-		posX = nPosX;
-		posY = nPosY;
-
-		centerPosX = posX + (w * 0.5);
-		centerPosY = posY - (h * 0.5);
+		SetPos(nPosX, nPosY);
 	}
-	int posX = 0;
-	int posY = 0;
+	float posX = 0;
+	float posY = 0;
 
-	int dir[2] = {0,0};
+	float dir[2] = {0,0};
 
 	int h;
 	int w;
@@ -40,6 +36,22 @@ public:
 		posY += deltaY;
 		centerPosX += deltaX;
 		centerPosY += deltaY;
+	}
+
+	void MoveToDir()
+	{
+		posX += dir[0];
+		posY += dir[1];
+		centerPosX += dir[0];
+		centerPosY += dir[1];
+	}
+
+	void SetPos(int nX, int nY)
+	{
+		posX = nX;
+		posY = nY;
+		centerPosX = posX + (w * 0.5);
+		centerPosY = posY - (h * 0.5);
 	}
 };
 

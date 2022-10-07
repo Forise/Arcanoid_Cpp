@@ -3,6 +3,7 @@
 #include "Brick.h"
 #include "Platform.h"
 #include "Ball.h"
+#include <math.h>
 
 #pragma region GameState
 enum class GameState
@@ -14,6 +15,12 @@ enum class GameState
 #pragma endregion GameState
 
 GameState gs = GameState::Init;
+const int brickMapW = 11;
+const int brickMapH = 6;
+Brick brickMap[brickMapH][brickMapW];
+Ball ball;
+Platform platform;
+
 
 #pragma region DeltaTicks
 unsigned int deltaTicks = 0;
@@ -32,10 +39,6 @@ void calculateDeltaTicks()
 #pragma region Map
 int mWidth;
 int mHeight;
-
-const int brickMapW = 11;
-const int brickMapH = 6;
-Brick brickMap[brickMapH][brickMapW];
 
 Brick createBrick(int posX, int posY, const char* spritePath, int width = 0, int height = 0)
 {
@@ -83,7 +86,6 @@ void drawBrickMap()
 #pragma endregion Map
 
 #pragma region Platform
-Platform platform;
 
 bool movingLeft = false;
 bool movingRight = false;
@@ -97,19 +99,22 @@ void createPlatform()
 
 void tryMovePlatform()
 {
+	int xVel = 0;
+
 	if (movingRight && platform.posX + platform.w < mWidth)
 	{
-		platform.MoveHorisontal(deltaTicks);
+		xVel = deltaTicks;
+		platform.MoveHorisontal(xVel);
 	}
 	else if (movingLeft && platform.posX > 0)
 	{
-		platform.MoveHorisontal(deltaTicks * -1);
+		xVel = deltaTicks * -1;
+		platform.MoveHorisontal(xVel);
 	}
 }
 #pragma endregion Platform
 
 #pragma region Ball
-Ball ball;
 
 void createBall()
 {
@@ -120,7 +125,21 @@ void createBall()
 
 void tryMoveBall()
 {
-
+	int bW = platform.w / 10;
+	int bH = bW;
+	switch (gs)
+	{
+		case GameState::Init:
+			ball.SetPos(platform.centerPosX - bW / 2, platform.centerPosY);
+			break;
+		case GameState::Playing:
+			ball.MoveToDir();
+			break;
+		case GameState::End:
+			break;
+		default:
+			break;
+	}
 }
 #pragma endregion Ball
 
@@ -145,6 +164,7 @@ bool MyFramework::Init() {
 	fillBrickMap();
 	createPlatform();
 	createBall();
+	showCursor(true);
 	return true;
 }
 
@@ -163,6 +183,7 @@ bool MyFramework::Tick() {
 	drawSprite(platform.sprite0, platform.posX, platform.posY);
 	drawSprite(ball.sprite0, ball.posX, ball.posY);
 	tryMovePlatform();
+	tryMoveBall();
 
 	switch (gs)
 	{
@@ -181,16 +202,30 @@ bool MyFramework::Tick() {
 }
 
 void MyFramework::onMouseMove(int x, int y, int xrelative, int yrelative) {
+	if (gs == GameState::Init)
+	{
+		ball.dir[0] = x - ball.posX;
+		ball.dir[1] = y - ball.posY;
 
-	/*printf("\n");
-	printf("mouse pos %d, %d", x, y);
-	printf("\n");
-	printf("relative mouse pos %d, %d", xrelative, yrelative);
-	printf("\n");*/
+		float mag = sqrt((ball.dir[0] * ball.dir[0]) + (ball.dir[1] * ball.dir[1]));
+		if (mag < 0)
+		{
+			mag = mag * -1;
+		}
+
+		ball.dir[0] /= mag;
+		ball.dir[1] /= mag;
+		/*printf("ball dir x = %d\n", ball.dir[0]);
+		printf("ball dir y = %d\n", ball.dir[1]);*/
+	}
 }
 
 void MyFramework::onMouseButtonClick(FRMouseButton button, bool isReleased) {
-	
+	if (gs == GameState::Init)
+	{
+		gs = GameState::Playing;
+		showCursor(false);
+	}
 }
 
 void MyFramework::onKeyPressed(FRKey k) {

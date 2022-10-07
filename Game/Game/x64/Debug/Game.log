@@ -1,11 +1,18 @@
-﻿  Brick.cpp
-  MyFramework.cpp
+﻿  MyFramework.cpp
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Platform.h(27,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Platform.h(28,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(22,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(23,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(45,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(46,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(95,38): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-  Создание кода...
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(45,1): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(46,1): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(51,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(52,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(53,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Ball.h(54,21): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(48,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(49,22): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(97,38): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(184,42): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(184,31): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(210,13): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(218,10): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "double"
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(219,10): warning C4477: "printf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "double"
   Game.vcxproj -> C:\Projects\Arcanoid\Arcanoid_Cpp\Game\x64\Debug\Game.exe
