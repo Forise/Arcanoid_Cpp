@@ -1,8 +1,8 @@
 #pragma once
 #include "MyFramework.h"
-#include "PosObj.h"
+#include "GameObj.h"
 
-class Platform : public PosObj
+class Platform : public GameObj
 {
 	const char* platformSpritePath0 = "data/50-Breakout-Tiles.png";
 	const char* platformSpritePath1 = "data/51-Breakout-Tiles.png";
@@ -28,10 +28,8 @@ public:
 		
 		centerPosX = posX + (w * 0.5);
 		centerPosY = posY - (h * 0.5);
+		SetBounds();
 	}
-
-	int h;
-	int w;
 
 	Sprite* sprite0;
 	Sprite* sprite1;
@@ -41,6 +39,8 @@ public:
 	{
 		posX += deltaX;
 		centerPosX += deltaX;
+
+		SetBounds();
 	}
 };
 

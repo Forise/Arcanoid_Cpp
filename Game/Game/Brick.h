@@ -1,8 +1,8 @@
 #pragma once
 #include "MyFramework.h"
-#include "PosObj.h"
+#include "GameObj.h"
 
-class Brick : public PosObj
+class Brick : public GameObj
 {
 public:
 	Brick(){}

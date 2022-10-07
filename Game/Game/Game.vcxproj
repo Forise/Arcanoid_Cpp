@@ -144,7 +144,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="MyFramework.cpp" />
     <ClCompile Include="Platform.cpp" />
-    <ClCompile Include="PosObj.cpp" />
+    <ClCompile Include="GameObj.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +153,7 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="MyFramework.h" />
     <ClInclude Include="Platform.h" />
-    <ClInclude Include="PosObj.h" />
+    <ClInclude Include="GameObj.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

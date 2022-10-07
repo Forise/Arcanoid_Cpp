@@ -1,9 +1,9 @@
 #pragma once
 #include "MyFramework.h"
-#include "PosObj.h"
+#include "GameObj.h"
 #include "Utils.h"
 
-class Ball : public PosObj
+class Ball : public GameObj
 {
 	const char* ballSpritePath0 = "data/ball.png";
 public:
@@ -23,9 +23,6 @@ public:
 
 	float dir[2] = {0,0};
 
-	int h;
-	int w;
-
 	
 	Sprite* sprite0;
 
@@ -35,6 +32,8 @@ public:
 		posY += deltaY;
 		centerPosX += deltaX;
 		centerPosY += deltaY;
+
+		SetBounds();
 	}
 
 	void MoveToDir()
@@ -43,6 +42,8 @@ public:
 		posY += dir[1];
 		centerPosX += dir[0];
 		centerPosY += dir[1];
+
+		SetBounds();
 	}
 
 	void SetPos(int nX, int nY)
@@ -51,6 +52,8 @@ public:
 		posY = nY;
 		centerPosX = posX + (w * 0.5);
 		centerPosY = posY - (h * 0.5);
+
+		SetBounds();
 	}
 
 	void Bounce(const float* normal)

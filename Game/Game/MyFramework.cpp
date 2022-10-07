@@ -6,14 +6,23 @@
 #include <math.h>
 #include "Utils.h"
 
-#pragma region GameState
 enum class GameState
 {
 	Init = 0,
 	Playing = 1,
 	End = 2,
 };
-#pragma endregion GameState
+
+enum class BounceResult
+{
+	Left,
+	Right,
+	Up,
+	Down,
+	RihgtUp,
+	LeftUp,
+	None
+};
 
 GameState gs = GameState::Init;
 const int brickMapW = 11;
@@ -23,6 +32,8 @@ const float NORMAL_LEFT[2] = { -1, 0 };
 const float NORMAL_RIGHT[2] = { 1, 0 };
 const float NORMAL_DOWN[2] = { 0, 1 };
 const float NORMAL_UP[2] = { 0, -1 };
+const float NORMAL_LEFT_UP[2] = { -1, -1 };
+const float NORMAL_RIGHT_UP[2] = { 1, -1 };
 Brick brickMap[brickMapH][brickMapW];
 Ball ball;
 Platform platform;
@@ -146,6 +157,47 @@ void tryMoveBall()
 			break;
 	}
 }
+
+BounceResult tryBounceBallFromWall()
+{
+	if (ball.rightCenterBorderPos[0] >= mWidth)
+	{
+		ball.Bounce(NORMAL_LEFT);
+		return BounceResult::Left;
+	}
+
+	if (ball.leftCenterBorderPos[0] <= 0)
+	{
+		ball.Bounce(NORMAL_RIGHT);
+		return BounceResult::Right;
+	}
+
+	if (ball.downCenterBorderPos[1] >= mHeight)
+	{
+		ball.Bounce(NORMAL_UP);
+		return BounceResult::Up;
+	}
+
+	if (ball.upCenterBorderPos[1] <= 0)
+	{
+		ball.Bounce(NORMAL_DOWN);
+		return BounceResult::Down;
+	}
+
+	return BounceResult::None;
+}
+
+BounceResult tryBounceFromPlatform()
+{
+	if (ball.downCenterBorderPos[0] >= platform.posX &&
+		ball.downCenterBorderPos[0] <= platform.posX + platform.w &&
+		ball.downCenterBorderPos[1] >= platform.posY)
+	{
+		ball.Bounce(NORMAL_UP);
+		return BounceResult::Up;
+	}
+	return BounceResult::None;
+}
 #pragma endregion Ball
 
 
@@ -176,7 +228,7 @@ bool MyFramework::Init() {
 void MyFramework::Close() {
 
 }
-bool bounced = false;
+
 bool MyFramework::Tick() {
 	calculateDeltaTicks();
 
@@ -189,17 +241,25 @@ bool MyFramework::Tick() {
 	drawSprite(ball.sprite0, ball.posX, ball.posY);
 	tryMovePlatform();
 	tryMoveBall();
+	BounceResult bounceResult = BounceResult::None;
 
 	switch (gs)
 	{
 	case GameState::Init:
 		break;
 	case GameState::Playing:
-		/*if (lastTicks > 3000 && bounced == false)
+#pragma region CheckWallsBounce
+		bounceResult = tryBounceBallFromWall();
+		if (bounceResult == BounceResult::Up)
 		{
-			ball.Bounce(NORMAL_LEFT);
-			bounced = true;
-		}*/
+			gs = GameState::End;
+			//TODO: restart game;
+		}
+#pragma endregion CheckWallsBounce
+
+#pragma region CheckPlatformBounce
+		tryBounceFromPlatform();
+#pragma endregion CheckPlatformBounce
 		break;
 	case GameState::End:
 		break;

@@ -26,7 +26,7 @@
     <ClCompile Include="Ball.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="PosObj.cpp">
+    <ClCompile Include="GameObj.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
@@ -49,7 +49,7 @@
     <ClInclude Include="Ball.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="PosObj.h">
+    <ClInclude Include="GameObj.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
