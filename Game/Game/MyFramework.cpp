@@ -4,6 +4,7 @@
 #include "Platform.h"
 #include "Ball.h"
 #include <math.h>
+#include "Utils.h"
 
 #pragma region GameState
 enum class GameState
@@ -17,6 +18,11 @@ enum class GameState
 GameState gs = GameState::Init;
 const int brickMapW = 11;
 const int brickMapH = 6;
+
+const float NORMAL_LEFT[2] = { -1, 0 };
+const float NORMAL_RIGHT[2] = { 1, 0 };
+const float NORMAL_DOWN[2] = { 0, 1 };
+const float NORMAL_UP[2] = { 0, -1 };
 Brick brickMap[brickMapH][brickMapW];
 Ball ball;
 Platform platform;
@@ -86,7 +92,6 @@ void drawBrickMap()
 #pragma endregion Map
 
 #pragma region Platform
-
 bool movingLeft = false;
 bool movingRight = false;
 
@@ -171,7 +176,7 @@ bool MyFramework::Init() {
 void MyFramework::Close() {
 
 }
-
+bool bounced = false;
 bool MyFramework::Tick() {
 	calculateDeltaTicks();
 
@@ -190,6 +195,11 @@ bool MyFramework::Tick() {
 	case GameState::Init:
 		break;
 	case GameState::Playing:
+		/*if (lastTicks > 3000 && bounced == false)
+		{
+			ball.Bounce(NORMAL_LEFT);
+			bounced = true;
+		}*/
 		break;
 	case GameState::End:
 		break;
@@ -207,14 +217,16 @@ void MyFramework::onMouseMove(int x, int y, int xrelative, int yrelative) {
 		ball.dir[0] = x - ball.posX;
 		ball.dir[1] = y - ball.posY;
 
-		float mag = sqrt((ball.dir[0] * ball.dir[0]) + (ball.dir[1] * ball.dir[1]));
+		Utils::normalize(ball.dir);
+
+		/*float mag = sqrt((ball.dir[0] * ball.dir[0]) + (ball.dir[1] * ball.dir[1]));
 		if (mag < 0)
 		{
 			mag = mag * -1;
 		}
 
 		ball.dir[0] /= mag;
-		ball.dir[1] /= mag;
+		ball.dir[1] /= mag;*/
 		/*printf("ball dir x = %d\n", ball.dir[0]);
 		printf("ball dir y = %d\n", ball.dir[1]);*/
 	}

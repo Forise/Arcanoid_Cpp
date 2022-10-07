@@ -1,6 +1,8 @@
 #pragma once
 #include "MyFramework.h"
-class Platform
+#include "PosObj.h"
+
+class Platform : public PosObj
 {
 	const char* platformSpritePath0 = "data/50-Breakout-Tiles.png";
 	const char* platformSpritePath1 = "data/51-Breakout-Tiles.png";
@@ -27,14 +29,10 @@ public:
 		centerPosX = posX + (w * 0.5);
 		centerPosY = posY - (h * 0.5);
 	}
-	int posX = 0;
-	int posY = 0;
 
 	int h;
 	int w;
 
-	int centerPosX = 0;
-	int centerPosY = 0;
 	Sprite* sprite0;
 	Sprite* sprite1;
 	Sprite* sprite2;
