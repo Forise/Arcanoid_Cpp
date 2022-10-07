@@ -6,13 +6,16 @@ class Brick : public GameObj
 {
 public:
 	Brick(){}
-	Brick(int nPosX, int nPosY, Sprite* nSprite)
+	Brick(int nPosX, int nPosY, Sprite* nSprite, int nW, int nH)
 	{
 		posX = nPosX;
 		posY = nPosY;
 		sprite = nSprite;
+		w = nW;
+		h = nH;
+		centerPosX = posX + (w * 0.5f);
+		centerPosY = posY + (h * 0.5f);
 	}
-
 	bool destroyed = false;
 	Sprite* sprite;
 };

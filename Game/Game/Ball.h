@@ -38,10 +38,10 @@ public:
 
 	void MoveToDir()
 	{
-		posX += dir[0];
-		posY += dir[1];
-		centerPosX += dir[0];
-		centerPosY += dir[1];
+		posX += dir[0] * 2;
+		posY += dir[1] * 2;
+		centerPosX += dir[0] * 2;
+		centerPosY += dir[1] * 2;
 
 		SetBounds();
 	}
