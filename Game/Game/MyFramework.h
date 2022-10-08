@@ -3,7 +3,9 @@
 
 class MyFramework : public Framework {
 public:
-	MyFramework(char* argv[]);
+	int w;
+	int h;
+	MyFramework(int nW, int nH);
 
 	void PreInit(int& width, int& height, bool& fullscreen);
 	bool Init();

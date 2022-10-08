@@ -450,16 +450,16 @@ BounceResult tryBounceFromShieldObject()
 #pragma endregion Ball
 
 #pragma region MyFramework
-MyFramework::MyFramework(char* argv[])
+MyFramework::MyFramework(int nW, int nH)
 {
-	printf("test");
-	printf("\n");
+	w = nW;
+	h = nH;
 }
 
 void MyFramework::PreInit(int& width, int& height, bool& fullscreen)
 {
-	width = 800;
-	height = 640;
+	width = w;
+	height = h;
 	mWidth = width;
 	mHeight = height;
 	fullscreen = false;
