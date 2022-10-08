@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BombObj.cpp" />
     <ClCompile Include="BounceResult.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="enumSide.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="BombObj.h" />
     <ClInclude Include="BounceResult.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="enumSide.h" />

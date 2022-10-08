@@ -4,9 +4,9 @@
 
 class Platform : public GameObj
 {
-	const char* platformSpritePath0 = "data/50-Breakout-Tiles.png";
-	const char* platformSpritePath1 = "data/51-Breakout-Tiles.png";
-	const char* platformSpritePath2 = "data/52-Breakout-Tiles.png";
+	const char* platformSpritePath0 = "data/platform_3.png";
+	const char* platformSpritePath1 = "data/platform_2.png";
+	const char* platformSpritePath2 = "data/platform_1.png";
 public:
 	Platform(){
 	}
@@ -32,6 +32,25 @@ public:
 	Sprite* sprite2;
 	int hp;
 
+	Sprite* GetSprite()
+	{
+		switch (hp)
+		{
+			case 3:
+				return sprite0;
+				break;
+			case 2:
+				return sprite1;
+				break;
+			case 1:
+				return sprite2;
+				break;
+			default:
+				return sprite0;
+				break;
+		}
+	}
+
 	void MoveHorisontal(int deltaX)
 	{
 		posX += deltaX;
@@ -43,6 +62,12 @@ public:
 	int GetDamage()
 	{
 		hp--;
+		return hp;
+	}
+	
+	int GetDamage(int damage)
+	{
+		hp-= damage;
 		return hp;
 	}
 };
