@@ -1,11 +1,21 @@
-﻿  MyFramework.cpp
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(54,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(55,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(56,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(57,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+﻿  Brick.cpp
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(58,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(59,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(60,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(61,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(12,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(13,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Utils.h(45,2): warning C4091: static : пропускается слева от "Utils", когда ни одна переменная не объявлена
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(15,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(16,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(17,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+  MyFramework.cpp
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(58,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(59,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(60,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(61,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Utils.h(45,2): warning C4091: static : пропускается слева от "Utils", когда ни одна переменная не объявлена
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(15,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(16,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(12,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(13,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldObj.h(11,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
@@ -14,51 +24,36 @@ C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\BombObj.h(11,10): warning C4244: =: 
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\BombObj.h(12,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(93,74): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
 C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(93,53): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(95,109): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(95,72): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(96,113): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(96,74): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(97,115): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(97,75): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(98,113): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(98,74): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(150,37): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(150,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(156,26): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(156,18): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(169,38): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(175,58): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(175,43): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(177,88): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(177,57): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(178,92): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(178,59): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(179,94): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(179,60): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(180,92): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(180,59): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(252,52): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(252,34): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(257,42): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(257,31): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(259,76): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(259,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(260,80): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(260,51): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(261,82): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(261,52): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(262,80): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(262,51): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(273,60): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(273,36): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(517,64): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(517,46): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(522,43): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(522,32): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(530,58): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(530,42): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(226): warning C4715: checkShieldBonusCollision: значение возвращается не при всех путях выполнения
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(243): warning C4715: checkBombCollision: значение возвращается не при всех путях выполнения
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(51): warning C4715: Brick::TrySpawnBomb: значение возвращается не при всех путях выполнения
-C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(41): warning C4715: Brick::TrySpawnShield: значение возвращается не при всех путях выполнения
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(152,37): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(152,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(158,26): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(158,18): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(171,38): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(177,58): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(177,43): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(256,52): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(256,34): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(261,42): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(261,31): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(279,60): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(279,36): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(523,64): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(523,46): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(528,43): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(528,32): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(536,58): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(536,42): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+  ShieldBonus.cpp
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(58,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(59,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(60,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\GameObj.h(61,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Utils.h(45,2): warning C4091: static : пропускается слева от "Utils", когда ни одна переменная не объявлена
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(15,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\Brick.h(16,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(12,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\ShieldBonus.h(13,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+  Создание кода...
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(230): warning C4715: checkShieldBonusCollision: значение возвращается не при всех путях выполнения
+C:\Projects\Arcanoid\Arcanoid_Cpp\Game\Game\MyFramework.cpp(247): warning C4715: checkBombCollision: значение возвращается не при всех путях выполнения
   Game.vcxproj -> C:\Projects\Arcanoid\Arcanoid_Cpp\Game\x64\Debug\Game.exe

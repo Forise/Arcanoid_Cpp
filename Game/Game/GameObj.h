@@ -18,19 +18,23 @@ public:
 	float upCenterBorderPos[2] = { 0,0 };
 	float downCenterBorderPos[2] = { 0,0 };
 
+#if defined(DEBUG_G)
 	Sprite* d_s_0;
 	Sprite* d_s_1;
 	Sprite* d_s_2;
 	Sprite* d_s_3;
+#endif
 	float dir[2] = { 0,0 };
 
 
 	GameObj()
 	{
+#if defined(DEBUG_G)
 		d_s_0 = createSprite("data/red_d.png");
 		d_s_1 = createSprite("data/yellow_d.png");
 		d_s_2 = createSprite("data/green_d.png");
-		d_s_3 = createSprite("data/black_d.png");
+		d_s_3 = createSprite("data/black_d.png"); 
+#endif
 	}
 
 

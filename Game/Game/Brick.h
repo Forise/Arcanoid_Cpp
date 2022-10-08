@@ -7,8 +7,7 @@
 class Brick : public GameObj
 {
 private :
-	int spawnShieldProbability = 15;
-	int spawnBombProbability = 15;
+	int spawnProbability = 15;
 public:
 	Brick(){}
 	Brick(int nPosX, int nPosY, Sprite* nSprite, int nW, int nH)
@@ -31,23 +30,14 @@ public:
 		SetPos(-1000, -1000);
 	}
 
-	bool TrySpawnShield()
+	bool TrySpawn()
 	{
-		int rnd = Utils::getRandom(1, 100);
-		if (rnd <= spawnShieldProbability)
+		int rnd = Utils::getRandom(0, 100);//rand() % 100 + 1;
+		if (rnd <= spawnProbability)
 		{
 			return true;
 		}
-	}
-	
-	bool TrySpawnBomb()
-	{
-		int rnd = Utils::getRandom(1, 100);
-		if (rnd <= spawnBombProbability)
-		{
-			printf("bomb spawn: prob = %d, rnd = %d\n", spawnBombProbability, rnd);
-			return true;
-		}
+		return false;
 	}
 };
 

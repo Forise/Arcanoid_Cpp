@@ -91,12 +91,14 @@ void drawBrickMap()
 			if (brickMap[i][k].destroyed == false)
 			{
 				drawSprite(brickMap[i][k].sprite, brickMap[i][k].posX, brickMap[i][k].posY);
+#if defined(DEBUG_G)
 #pragma region DEBUG
 				drawSprite(brickMap[i][k].d_s_0, brickMap[i][k].upCenterBorderPos[0], brickMap[i][k].upCenterBorderPos[1]);
 				drawSprite(brickMap[i][k].d_s_1, brickMap[i][k].downCenterBorderPos[0], brickMap[i][k].downCenterBorderPos[1]);
 				drawSprite(brickMap[i][k].d_s_2, brickMap[i][k].rightCenterBorderPos[0], brickMap[i][k].rightCenterBorderPos[1]);
 				drawSprite(brickMap[i][k].d_s_3, brickMap[i][k].leftCenterBorderPos[0], brickMap[i][k].leftCenterBorderPos[1]);
 #pragma endregion DEBUG
+#endif
 
 			}
 		}
@@ -173,12 +175,14 @@ void createPlatform()
 void drawPlatform()
 {
 	drawSprite(platform.GetSprite(), platform.posX, platform.posY);
+#if defined(DEBUG_G)
 #pragma region DEBUG
 	drawSprite(platform.d_s_0, platform.upCenterBorderPos[0], platform.upCenterBorderPos[1]);
 	drawSprite(platform.d_s_1, platform.downCenterBorderPos[0], platform.downCenterBorderPos[1]);
 	drawSprite(platform.d_s_2, platform.rightCenterBorderPos[0], platform.rightCenterBorderPos[1]);
 	drawSprite(platform.d_s_3, platform.leftCenterBorderPos[0], platform.leftCenterBorderPos[1]);
 #pragma endregion DEBUG
+#endif
 }
 
 void tryMovePlatform()
@@ -255,12 +259,14 @@ void createBall()
 void drawBall()
 {
 	drawSprite(ball.sprite0, ball.posX, ball.posY);
+#if defined(DEBUG_G)
 #pragma region DEBUG
 	drawSprite(ball.d_s_0, ball.upCenterBorderPos[0], ball.upCenterBorderPos[1]);
 	drawSprite(ball.d_s_1, ball.downCenterBorderPos[0], ball.downCenterBorderPos[1]);
 	drawSprite(ball.d_s_2, ball.rightCenterBorderPos[0], ball.rightCenterBorderPos[1]);
 	drawSprite(ball.d_s_3, ball.leftCenterBorderPos[0], ball.leftCenterBorderPos[1]);
 #pragma endregion DEBUG
+#endif DEBUG
 }
 
 void tryMoveBall()
@@ -335,13 +341,13 @@ BounceResult tryBounceFromPlatform()
 	return BounceResult::None;
 }
 
-bool trySpawnShieldBonus(Brick b)
+bool trySpawnShieldBonus(Brick* b)
 {
 	if (shieldActive == false && shieldBonusExists == false)
 	{
-		if (b.TrySpawnShield())
+		if (b->TrySpawn())
 		{
-			createShieldBonus(b);
+			createShieldBonus(*b);
 			shieldLiveTicks = 0;
 			return true;
 		}
@@ -349,13 +355,13 @@ bool trySpawnShieldBonus(Brick b)
 	return false;
 }
 
-bool trySpawnBomb(Brick b)
+bool trySpawnBomb(Brick* b)
 {
 	if (bombExists == false)
 	{
-		if (b.TrySpawnBomb())
+		if (b->TrySpawn())
 		{
-			createBomb(b);
+			createBomb(*b);
 			return true;
 		}
 	}
@@ -371,9 +377,9 @@ BounceResult tryBounceFromBrick()
 			if (ball.CheckCollideSide(brickMap[i][k], enumSide::Down))
 			{
 				ball.Bounce(NORMAL_UP);
-				if (trySpawnShieldBonus(brickMap[i][k]) == false)
+				if (trySpawnShieldBonus(&brickMap[i][k]) == false)
 				{
-					trySpawnBomb(brickMap[i][k]);
+					trySpawnBomb(&brickMap[i][k]);
 				}
 				brickMap[i][k].Destroy();
 				bricksDestroyed++;
@@ -382,9 +388,9 @@ BounceResult tryBounceFromBrick()
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Up))
 			{
 				ball.Bounce(NORMAL_DOWN);
-				if (trySpawnShieldBonus(brickMap[i][k]) == false)
+				if (trySpawnShieldBonus(&brickMap[i][k]) == false)
 				{
-					trySpawnBomb(brickMap[i][k]);
+					trySpawnBomb(&brickMap[i][k]);
 				}
 				brickMap[i][k].Destroy();
 				bricksDestroyed++;
@@ -393,9 +399,9 @@ BounceResult tryBounceFromBrick()
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Right))
 			{
 				ball.Bounce(NORMAL_LEFT);
-				if (trySpawnShieldBonus(brickMap[i][k]) == false)
+				if (trySpawnShieldBonus(&brickMap[i][k]) == false)
 				{
-					trySpawnBomb(brickMap[i][k]);
+					trySpawnBomb(&brickMap[i][k]);
 				}
 				brickMap[i][k].Destroy();
 				bricksDestroyed++;
@@ -404,9 +410,9 @@ BounceResult tryBounceFromBrick()
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Left))
 			{
 				ball.Bounce(NORMAL_RIGHT);
-				if (trySpawnShieldBonus(brickMap[i][k]) == false)
+				if (trySpawnShieldBonus(&brickMap[i][k]) == false)
 				{
-					trySpawnBomb(brickMap[i][k]);
+					trySpawnBomb(&brickMap[i][k]);
 				}
 				brickMap[i][k].Destroy();
 				bricksDestroyed++;
@@ -535,7 +541,6 @@ bool MyFramework::Tick() {
 			}
 		}
 		checkBonusesFallCompletelly();
-
 
 		moveBricksDown();
 		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform() || checkBrickFallCompletelly())
