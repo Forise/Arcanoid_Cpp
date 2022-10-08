@@ -23,12 +23,7 @@ public:
 		setSpriteSize(sprite1, w, h);
 		setSpriteSize(sprite2, w, h);
 
-		posX = nPosX;
-		posY = nPosY;
-		
-		centerPosX = posX + (w * 0.5);
-		centerPosY = posY - (h * 0.5);
-		SetBounds();
+		SetPos(nPosX, nPosY);
 		hp = 3;
 	}
 

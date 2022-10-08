@@ -1,4 +1,6 @@
 #pragma once
+#include "enumSide.h"
+#include "MyFramework.h"
 class GameObj
 {
 public:
@@ -16,7 +18,21 @@ public:
 	float upCenterBorderPos[2] = { 0,0 };
 	float downCenterBorderPos[2] = { 0,0 };
 
+	Sprite* d_s_0;
+	Sprite* d_s_1;
+	Sprite* d_s_2;
+	Sprite* d_s_3;
 	float dir[2] = { 0,0 };
+
+
+	GameObj()
+	{
+		d_s_0 = createSprite("data/red_d.png");
+		d_s_1 = createSprite("data/yellow_d.png");
+		d_s_2 = createSprite("data/green_d.png");
+		d_s_3 = createSprite("data/black_d.png");
+	}
+
 
 	void SetBounds()
 	{
@@ -38,7 +54,7 @@ public:
 		posX = nX;
 		posY = nY;
 		centerPosX = posX + (w * 0.5);
-		centerPosY = posY - (h * 0.5);
+		centerPosY = posY + (h * 0.5);
 
 		SetBounds();
 	}
@@ -55,33 +71,33 @@ public:
 
 	void MoveToDir()
 	{
-		posX += dir[0] * speed;
-		posY += dir[1] * speed;
-		centerPosX += dir[0] * speed;
-		centerPosY += dir[1] * speed;
-
-		SetBounds();
+		Move(dir[0] * speed, dir[1] * speed);
 	}
 
-	bool CollidesWithTopEdge(float* pos, float weight, float height)
+	bool CheckCollideSide(GameObj o, enumSide side)
 	{
-		return ((pos[0] >= posX && pos[0] <= posX + w) ||
-			(pos[0] + weight >= posX && pos[0] <= posX + w)) &&
-			pos[1] + height >= posY;
+		switch (side)
+		{
+			case enumSide::Left:
+				return CheckPointInBoundsOfObject(leftCenterBorderPos[0], leftCenterBorderPos[1], o);
+				break;
+			case enumSide::Right:
+				return CheckPointInBoundsOfObject(rightCenterBorderPos[0], rightCenterBorderPos[1], o);
+				break;
+			case enumSide::Up:
+				return CheckPointInBoundsOfObject(upCenterBorderPos[0], upCenterBorderPos[1], o);
+				break;
+			case enumSide::Down:
+				return CheckPointInBoundsOfObject(downCenterBorderPos[0], downCenterBorderPos[1], o);
+				break;
+		}
+		return false;
 	}
-	
-	bool CollidesWithTopEdge(GameObj* go)
+
+	bool CheckPointInBoundsOfObject(float px, float py, GameObj o)
 	{
-		return ((go->posX >= posX && go->posX <= posX + w) ||
-			(go->posX + go->w >= posX && go->posX <= posX + w)) &&
-			go->posY + go->h >= posY;
-	}
-	
-	bool CollidesWithBottomEdge(GameObj* go)
-	{
-		return ((go->posX >= posX && go->posX <= posX + w) ||
-			(go->posX + go->w >= posX && go->posX <= posX + w)) &&
-			(go->posY - (posY + h) <= 0 && posY < go->posY);
+		return px >= o.posX && px <= o.posX + o.w &&
+			py >= o.posY && py <= o.posY + o.h;
 	}
 };
 

@@ -13,14 +13,17 @@ public:
 		sprite = nSprite;
 		w = nW;
 		h = nH;
-		centerPosX = posX + (w * 0.5f);
-		centerPosY = posY + (h * 0.5f);
 		destroyed = false;
 		SetPos(nPosX, nPosY);
 	}
 
-	bool falling = false;
 	bool destroyed = false;
 	Sprite* sprite;
+
+	void Destroy()
+	{
+		destroyed = true;
+		SetPos(-1000, -1000);
+	}
 };
 
