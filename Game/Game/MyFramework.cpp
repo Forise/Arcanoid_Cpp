@@ -111,10 +111,24 @@ void moveBricksDown()
 			if (brickMap[i][k].destroyed == false)
 			{
 				brickMap[i][k].Move(0, mHeight/500 * 0.005f);
-				//drawSprite(brickMap[i][k].sprite, brickMap[i][k].posX, brickMap[i][k].posY);
 			}
 		}
 	}
+}
+
+bool checkBrickFallCompletelly()
+{
+	for (int i = 0; i < brickMapH; i++)
+	{
+		for (int k = 0; k < brickMapW; k++)
+		{
+			if (brickMap[i][k].posY + brickMap[i][k].h >= mHeight)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 #pragma endregion Map
 
@@ -370,7 +384,7 @@ bool MyFramework::Tick() {
 #pragma endregion CheckPlatformBounce
 		tryBounceFromBrick();
 		moveBricksDown();
-		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform())
+		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform() || checkBrickFallCompletelly())
 		{
 			gs = GameState::End;
 		}
