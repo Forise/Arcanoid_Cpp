@@ -27,6 +27,8 @@ enum class BounceResult
 GameState gs = GameState::Init;
 const int brickMapW = 11;
 const int brickMapH = 6;
+const int totalBricks = brickMapW * brickMapH;
+int bricksDestroyed = 0;
 
 const float NORMAL_LEFT[2] = { -1, 0 };
 const float NORMAL_RIGHT[2] = { 1, 0 };
@@ -99,6 +101,21 @@ void drawBrickMap()
 		}
 	}
 }
+
+void moveBricksDown()
+{
+	for (int i = 0; i < brickMapH; i++)
+	{
+		for (int k = 0; k < brickMapW; k++)
+		{
+			if (brickMap[i][k].destroyed == false)
+			{
+				brickMap[i][k].Move(0, mHeight/500 * 0.005f);
+				//drawSprite(brickMap[i][k].sprite, brickMap[i][k].posX, brickMap[i][k].posY);
+			}
+		}
+	}
+}
 #pragma endregion Map
 
 #pragma region Platform
@@ -126,6 +143,22 @@ void tryMovePlatform()
 		xVel = deltaTicks * -1;
 		platform.MoveHorisontal(xVel);
 	}
+}
+
+bool checkBrickCollisionWithPlatform()
+{
+	for (int i = 0; i < brickMapH; i++)
+	{
+		for (int k = 0; k < brickMapW; k++)
+		{
+			float pos[2] = { brickMap[i][k].posX , brickMap[i][k].posY };
+			if (platform.CollidesWithTopEdge(pos, brickMap[i][k].w, brickMap[i][k].h))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 #pragma endregion Platform
 
@@ -218,6 +251,7 @@ BounceResult tryBounceFromPlatform()
 
 BounceResult tryBounceFromBrick()
 {
+	BounceResult result = BounceResult::None;
 	for (int i = 0; i < brickMapH; i++)
 	{
 		for (int k = 0; k < brickMapW; k++)
@@ -228,39 +262,47 @@ BounceResult tryBounceFromBrick()
 				ball.downCenterBorderPos[1] <= brickMap[i][k].posY + brickMap[i][k].h)
 			{
 				ball.Bounce(NORMAL_UP);
-				return BounceResult::Up;
+				brickMap[i][k].destroyed = true;
+				brickMap[i][k].SetPos(-1000, -1000);
+				result = BounceResult::Up;
 			}
-
-			if (ball.upCenterBorderPos[0] >= brickMap[i][k].posX &&
+			else if (ball.upCenterBorderPos[0] >= brickMap[i][k].posX &&
 				ball.upCenterBorderPos[0] <= brickMap[i][k].posX + brickMap[i][k].w &&
 				ball.upCenterBorderPos[1] >= brickMap[i][k].posY &&
 				ball.upCenterBorderPos[1] <= brickMap[i][k].posY + brickMap[i][k].h)
 			{
 				ball.Bounce(NORMAL_DOWN);
-				return BounceResult::Down;
+				brickMap[i][k].destroyed = true;
+				brickMap[i][k].SetPos(-1000, -1000);
+				result = BounceResult::Down;
 			}
-
-			/*if (ball.rightCenterBorderPos[0] >= brickMap[i][k].posX &&
-				ball.rightCenterBorderPos[0] <= brickMap[i][k].posX + brickMap[i][k].w &&
-				ball.rightCenterBorderPos[1] >= brickMap[i][k].posY)
+			else if (ball.upCenterBorderPos[0] >= brickMap[i][k].posX &&
+				ball.upCenterBorderPos[0] <= brickMap[i][k].posX + brickMap[i][k].w &&
+				ball.upCenterBorderPos[1] >= brickMap[i][k].posY &&
+				ball.upCenterBorderPos[1] <= brickMap[i][k].posY + brickMap[i][k].h)
 			{
-				ball.dir[0] = (NORMAL_LEFT_UP[0]);
-				ball.dir[1] = (NORMAL_LEFT_UP[1]);
-				return BounceResult::LeftUp;
+				ball.Bounce(NORMAL_LEFT);
+				brickMap[i][k].destroyed = true;
+				brickMap[i][k].SetPos(-1000, -1000);
+				result = BounceResult::Left;
 			}
-
-			if (ball.leftCenterBorderPos[0] >= brickMap[i][k].posX &&
-				ball.leftCenterBorderPos[0] <= brickMap[i][k].posX + brickMap[i][k].w &&
-				ball.leftCenterBorderPos[1] >= brickMap[i][k].posY)
+			else if (ball.upCenterBorderPos[0] >= brickMap[i][k].posX &&
+				ball.upCenterBorderPos[0] <= brickMap[i][k].posX + brickMap[i][k].w &&
+				ball.upCenterBorderPos[1] >= brickMap[i][k].posY &&
+				ball.upCenterBorderPos[1] <= brickMap[i][k].posY + brickMap[i][k].h)
 			{
-				ball.dir[0] = (NORMAL_RIGHT_UP[0]);
-				ball.dir[1] = (NORMAL_RIGHT_UP[1]);
-				return BounceResult::RightUp;
-			}*/
+				ball.Bounce(NORMAL_RIGHT);
+				brickMap[i][k].destroyed = true;
+				brickMap[i][k].SetPos(-1000, -1000);
+				result = BounceResult::RightUp;
+			}
 		}
 	}
-	
-	return BounceResult::None;
+	if (result != BounceResult::None)
+	{
+		bricksDestroyed++;
+	}
+	return result;
 }
 #pragma endregion Ball
 
@@ -282,6 +324,7 @@ void MyFramework::PreInit(int& width, int& height, bool& fullscreen)
 }
 
 bool MyFramework::Init() {
+	bricksDestroyed = 0;
 	fillBrickMap();
 	createPlatform();
 	createBall();
@@ -319,7 +362,6 @@ bool MyFramework::Tick() {
 		if (bounceResult == BounceResult::Up)
 		{
 			gs = GameState::End;
-			//TODO: restart game;
 		}
 #pragma endregion CheckWallsBounce
 
@@ -327,6 +369,11 @@ bool MyFramework::Tick() {
 		tryBounceFromPlatform();
 #pragma endregion CheckPlatformBounce
 		tryBounceFromBrick();
+		moveBricksDown();
+		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform())
+		{
+			gs = GameState::End;
+		}
 		break;
 	case GameState::End:
 		Init();

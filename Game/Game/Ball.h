@@ -26,32 +26,12 @@ public:
 	
 	Sprite* sprite0;
 
-	void Move(int deltaX, int deltaY)
-	{
-		posX += deltaX;
-		posY += deltaY;
-		centerPosX += deltaX;
-		centerPosY += deltaY;
-
-		SetBounds();
-	}
-
 	void MoveToDir()
 	{
 		posX += dir[0] * 2;
 		posY += dir[1] * 2;
 		centerPosX += dir[0] * 2;
 		centerPosY += dir[1] * 2;
-
-		SetBounds();
-	}
-
-	void SetPos(int nX, int nY)
-	{
-		posX = nX;
-		posY = nY;
-		centerPosX = posX + (w * 0.5);
-		centerPosY = posY - (h * 0.5);
 
 		SetBounds();
 	}

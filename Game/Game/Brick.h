@@ -15,6 +15,7 @@ public:
 		h = nH;
 		centerPosX = posX + (w * 0.5f);
 		centerPosY = posY + (h * 0.5f);
+		destroyed = false;
 	}
 	bool destroyed = false;
 	Sprite* sprite;
