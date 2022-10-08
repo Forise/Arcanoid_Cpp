@@ -1,7 +1,8 @@
 #pragma once
-#include "Brick.h"
+#include "GameObj.h"
+#include "MyFramework.h"
 
-class ShieldObj : public Brick
+class ShieldObj : public GameObj
 {
 public:
 	ShieldObj(){}
@@ -12,9 +13,10 @@ public:
 		sprite = nSprite;
 		w = nW;
 		h = nH;
-		destroyed = false;
 		sprite = nSprite;
 		SetPos(nPosX, nPosY);
 	}
+
+	Sprite* sprite;
 };
 

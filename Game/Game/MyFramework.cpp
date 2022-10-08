@@ -1,6 +1,5 @@
 #include "MyFramework.h"
 #include <stdio.h>
-#include "Brick.h"
 #include "Platform.h"
 #include "Ball.h"
 #include <math.h>
@@ -8,24 +7,9 @@
 #include "enumSide.h"
 #include "ShieldBonus.h"
 #include "ShieldObj.h"
-
-enum class GameState
-{
-	Init = 0,
-	Playing = 1,
-	End = 2,
-};
-
-enum class BounceResult
-{
-	Left,
-	Right,
-	Up,
-	Down,
-	RightUp,
-	LeftUp,
-	None
-};
+#include "GameState.h"
+#include "BounceResult.h"
+#include "Brick.h"
 
 GameState gs = GameState::Init;
 const int brickMapW = 11;
@@ -39,11 +23,15 @@ const float NORMAL_DOWN[2] = { 0, 1 };
 const float NORMAL_UP[2] = { 0, -1 };
 float NORMAL_LEFT_UP[2] = { -1, -1 };
 float NORMAL_RIGHT_UP[2] = { 1, -1 };
+
 Brick brickMap[brickMapH][brickMapW];
+ShieldBonus shieldBonus;
 ShieldObj shieldObj;
 Ball ball;
 Platform platform;
 bool shieldActive = false;
+bool shieldBonusExists = false;
+unsigned int shieldLiveTicks = 0;
 
 
 #pragma region DeltaTicks
@@ -140,6 +128,12 @@ bool checkBrickFallCompletelly()
 	}
 	return false;
 }
+
+void createShieldBonus(Brick b)
+{
+	shieldBonus = ShieldBonus(b.posX, b.posY, b.w, b.h);
+	shieldBonusExists = true;
+}
 #pragma endregion Map
 
 #pragma region Platform
@@ -193,6 +187,19 @@ bool checkBrickCollisionWithPlatform()
 		}
 	}
 	return false;
+}
+
+bool checkShieldBonusCollision()
+{
+	if (shieldBonusExists)
+	{
+		if (platform.CheckCollideSide(shieldBonus, enumSide::Up))
+		{
+			shieldBonusExists = false;
+			shieldActive = true;
+			return true;
+		}
+	}
 }
 #pragma endregion Platform
 
@@ -288,6 +295,18 @@ BounceResult tryBounceFromPlatform()
 	return BounceResult::None;
 }
 
+void trySpawnShieldBonus(Brick b)
+{
+	if (shieldActive == false && shieldBonusExists == false)
+	{
+		if (b.TrySpawnShield())
+		{
+			createShieldBonus(b);
+			shieldLiveTicks = 0;
+		}
+	}
+}
+
 BounceResult tryBounceFromBrick()
 {
 	for (int i = 0; i < brickMapH; i++)
@@ -297,24 +316,31 @@ BounceResult tryBounceFromBrick()
 			if (ball.CheckCollideSide(brickMap[i][k], enumSide::Down))
 			{
 				ball.Bounce(NORMAL_UP);
+				trySpawnShieldBonus(brickMap[i][k]);
 				brickMap[i][k].Destroy();
+				bricksDestroyed++;
 				return BounceResult::Up;
 			}
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Up))
 			{
 				ball.Bounce(NORMAL_DOWN);
+				trySpawnShieldBonus(brickMap[i][k]);
 				brickMap[i][k].Destroy();
+				bricksDestroyed++;
 				return  BounceResult::Down;
 			}
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Right))
 			{
 				ball.Bounce(NORMAL_LEFT);
+				trySpawnShieldBonus(brickMap[i][k]);
 				brickMap[i][k].Destroy();
+				bricksDestroyed++;
 				return BounceResult::Left;
 			}
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Left))
 			{
 				ball.Bounce(NORMAL_RIGHT);
+				trySpawnShieldBonus(brickMap[i][k]);
 				brickMap[i][k].Destroy();
 				bricksDestroyed++;
 				return BounceResult::Right;
@@ -344,13 +370,11 @@ BounceResult tryBounceFromShieldObject()
 	else if (ball.CheckCollideSide(shieldObj, enumSide::Left))
 	{
 		ball.Bounce(NORMAL_RIGHT);
-		bricksDestroyed++;
 		return BounceResult::Right;
 	}
 	return BounceResult::None;
 }
 #pragma endregion Ball
-
 
 #pragma region MyFramework
 MyFramework::MyFramework(char* argv[])
@@ -417,11 +441,25 @@ bool MyFramework::Tick() {
 		tryBounceFromPlatform();
 #pragma endregion CheckPlatformBounce
 		tryBounceFromBrick();
+
+		if (shieldBonusExists)
+		{
+			drawSprite(shieldBonus.sprite, shieldBonus.posX, shieldBonus.posY);
+			shieldBonus.MoveToDir();
+		}
+		checkShieldBonusCollision();
 		if (shieldActive)
 		{
+			shieldLiveTicks += deltaTicks;
 			drawSprite(shieldObj.sprite, shieldObj.posX, shieldObj.posY);
 			tryBounceFromShieldObject();
+			if (shieldLiveTicks >= 10000)
+			{
+				shieldActive = false;
+			}
 		}
+
+
 		moveBricksDown();
 		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform() || checkBrickFallCompletelly())
 		{
