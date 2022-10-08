@@ -50,8 +50,6 @@ void calculateDeltaTicks()
 	int ticks = getTickCount();
 	deltaTicks = ticks - lastTicks;
 	lastTicks = ticks;
-	/*printf("\n");
-	printf("%d", deltaTicks);*/
 }
 #pragma endregion DeltaTicks
 

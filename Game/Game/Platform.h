@@ -29,11 +29,13 @@ public:
 		centerPosX = posX + (w * 0.5);
 		centerPosY = posY - (h * 0.5);
 		SetBounds();
+		hp = 3;
 	}
 
 	Sprite* sprite0;
 	Sprite* sprite1;
 	Sprite* sprite2;
+	int hp;
 
 	void MoveHorisontal(int deltaX)
 	{
@@ -41,6 +43,12 @@ public:
 		centerPosX += deltaX;
 
 		SetBounds();
+	}
+	
+	int GetDamage()
+	{
+		hp--;
+		return hp;
 	}
 };
 

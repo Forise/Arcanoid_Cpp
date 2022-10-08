@@ -16,7 +16,10 @@ public:
 		centerPosX = posX + (w * 0.5f);
 		centerPosY = posY + (h * 0.5f);
 		destroyed = false;
+		SetPos(nPosX, nPosY);
 	}
+
+	bool falling = false;
 	bool destroyed = false;
 	Sprite* sprite;
 };

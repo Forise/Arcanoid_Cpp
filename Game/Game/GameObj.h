@@ -6,6 +6,7 @@ public:
 	float posY = 0;
 	float centerPosX = 0;
 	float centerPosY = 0;
+	float speed = 1;
 
 	int h;
 	int w;
@@ -14,6 +15,8 @@ public:
 	float leftCenterBorderPos[2] = { 0,0 };
 	float upCenterBorderPos[2] = { 0,0 };
 	float downCenterBorderPos[2] = { 0,0 };
+
+	float dir[2] = { 0,0 };
 
 	void SetBounds()
 	{
@@ -50,11 +53,35 @@ public:
 		SetBounds();
 	}
 
+	void MoveToDir()
+	{
+		posX += dir[0] * speed;
+		posY += dir[1] * speed;
+		centerPosX += dir[0] * speed;
+		centerPosY += dir[1] * speed;
+
+		SetBounds();
+	}
+
 	bool CollidesWithTopEdge(float* pos, float weight, float height)
 	{
 		return ((pos[0] >= posX && pos[0] <= posX + w) ||
 			(pos[0] + weight >= posX && pos[0] <= posX + w)) &&
 			pos[1] + height >= posY;
+	}
+	
+	bool CollidesWithTopEdge(GameObj* go)
+	{
+		return ((go->posX >= posX && go->posX <= posX + w) ||
+			(go->posX + go->w >= posX && go->posX <= posX + w)) &&
+			go->posY + go->h >= posY;
+	}
+	
+	bool CollidesWithBottomEdge(GameObj* go)
+	{
+		return ((go->posX >= posX && go->posX <= posX + w) ||
+			(go->posX + go->w >= posX && go->posX <= posX + w)) &&
+			(go->posY - (posY + h) <= 0 && posY < go->posY);
 	}
 };
 
