@@ -245,6 +245,36 @@ bool checkBombCollision()
 		}
 	}
 }
+
+bool checkShieldBonusCollisionWithBricks()
+{
+	for (int i = 0; i < brickMapH; i++)
+	{
+		for (int k = 0; k < brickMapW; k++)
+		{
+			if (shieldBonus.CheckCollideSide(brickMap[i][k], enumSide::Down))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool checkBombCollisionWithBricks()
+{
+	for (int i = 0; i < brickMapH; i++)
+	{
+		for (int k = 0; k < brickMapW; k++)
+		{
+			if (bomb.CheckCollideSide(brickMap[i][k], enumSide::Down))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
 #pragma endregion Platform
 
 #pragma region Ball
@@ -521,12 +551,18 @@ bool MyFramework::Tick() {
 		if (shieldBonusExists)
 		{
 			drawSprite(shieldBonus.sprite, shieldBonus.posX, shieldBonus.posY);
-			shieldBonus.MoveToDir();
+			if (checkShieldBonusCollisionWithBricks() == false)
+			{
+				shieldBonus.MoveToDir();
+			}
 		}
 		if (bombExists)
 		{
 			drawSprite(bomb.sprite, bomb.posX, bomb.posY);
-			bomb.MoveToDir();
+			if (checkBombCollisionWithBricks() == false)
+			{
+				bomb.MoveToDir();
+			}
 		}
 		checkShieldBonusCollision();
 		checkBombCollision();
