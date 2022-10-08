@@ -146,6 +146,8 @@
     <ClCompile Include="MyFramework.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="GameObj.cpp" />
+    <ClCompile Include="ShieldBonus.cpp" />
+    <ClCompile Include="ShieldObj.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,8 @@
     <ClInclude Include="MyFramework.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="GameObj.h" />
+    <ClInclude Include="ShieldBonus.h" />
+    <ClInclude Include="ShieldObj.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

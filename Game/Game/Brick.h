@@ -14,6 +14,7 @@ public:
 		w = nW;
 		h = nH;
 		destroyed = false;
+		sprite = nSprite;
 		SetPos(nPosX, nPosY);
 	}
 

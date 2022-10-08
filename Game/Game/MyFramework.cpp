@@ -6,6 +6,8 @@
 #include <math.h>
 #include "Utils.h"
 #include "enumSide.h"
+#include "ShieldBonus.h"
+#include "ShieldObj.h"
 
 enum class GameState
 {
@@ -38,8 +40,10 @@ const float NORMAL_UP[2] = { 0, -1 };
 float NORMAL_LEFT_UP[2] = { -1, -1 };
 float NORMAL_RIGHT_UP[2] = { 1, -1 };
 Brick brickMap[brickMapH][brickMapW];
+ShieldObj shieldObj;
 Ball ball;
 Platform platform;
+bool shieldActive = false;
 
 
 #pragma region DeltaTicks
@@ -304,7 +308,6 @@ BounceResult tryBounceFromBrick()
 			}
 			else if (ball.CheckCollideSide(brickMap[i][k], enumSide::Right))
 			{
-				ball.CheckCollideSide(brickMap[i][k], enumSide::Up);
 				ball.Bounce(NORMAL_LEFT);
 				brickMap[i][k].Destroy();
 				return BounceResult::Left;
@@ -317,6 +320,32 @@ BounceResult tryBounceFromBrick()
 				return BounceResult::Right;
 			}
 		}
+	}
+	return BounceResult::None;
+}
+
+BounceResult tryBounceFromShieldObject()
+{
+	if (ball.CheckCollideSide(shieldObj, enumSide::Down))
+	{
+		ball.Bounce(NORMAL_UP);
+		return BounceResult::Up;
+	}
+	else if (ball.CheckCollideSide(shieldObj, enumSide::Up))
+	{
+		ball.Bounce(NORMAL_DOWN);
+		return  BounceResult::Down;
+	}
+	else if (ball.CheckCollideSide(shieldObj, enumSide::Right))
+	{
+		ball.Bounce(NORMAL_LEFT);
+		return BounceResult::Left;
+	}
+	else if (ball.CheckCollideSide(shieldObj, enumSide::Left))
+	{
+		ball.Bounce(NORMAL_RIGHT);
+		bricksDestroyed++;
+		return BounceResult::Right;
 	}
 	return BounceResult::None;
 }
@@ -344,6 +373,8 @@ bool MyFramework::Init() {
 	fillBrickMap();
 	createPlatform();
 	createBall();
+	shieldObj = ShieldObj(0, mHeight -2, createSprite("data/10.png"), mWidth, 4);
+	setSpriteSize(shieldObj.sprite, mWidth, 4);
 	showCursor(true);
 	Utils::normalize(NORMAL_LEFT_UP);
 	Utils::normalize(NORMAL_RIGHT_UP);
@@ -386,6 +417,11 @@ bool MyFramework::Tick() {
 		tryBounceFromPlatform();
 #pragma endregion CheckPlatformBounce
 		tryBounceFromBrick();
+		if (shieldActive)
+		{
+			drawSprite(shieldObj.sprite, shieldObj.posX, shieldObj.posY);
+			tryBounceFromShieldObject();
+		}
 		moveBricksDown();
 		if (bricksDestroyed >= totalBricks || checkBrickCollisionWithPlatform() || checkBrickFallCompletelly())
 		{
